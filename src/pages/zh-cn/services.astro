@@ -1,0 +1,169 @@
+---
+// Import necessary components
+import MainLayout from "@/layouts/MainLayout.astro";
+import MainSection from "@components/ui/blocks/MainSection.astro";
+import LeftSection from "@components/ui/blocks/LeftSection.astro";
+import RightSection from "@components/ui/blocks/RightSection.astro";
+import FeaturesStats from "@components/sections/features/FeaturesStats.astro";
+
+// Import necessary images
+import blueprints from "@images/blueprints-image.avif";
+import personWorking from "@images/person-working.avif";
+import beforeAfter from "@images/before-after.avif";
+import constructionWorkers from "@images/construction-workers.avif";
+import aerialView from "@images/aerial-view.avif";
+import usingTools from "@images/using-tools.avif";
+import progressBuilding from "@images/progress-building.avif";
+import underConstruction from "@images/under-construction.avif";
+import { SITE } from "@data/constants";
+import servicesData from "@data/zh-cn/services.json";
+
+interface Article {
+  isRightSection: boolean;
+  title: string;
+  subTitle: string;
+  btnExists?: boolean;
+  btnTitle?: string;
+  btnURL?: string;
+  single?: boolean;
+  img?: any;
+  imgAlt?: string;
+  imgOne?: any;
+  imgOneAlt?: string;
+  imgTwo?: any;
+  imgTwoAlt?: string;
+}
+
+const articles: Article[] = [
+  {
+    isRightSection: true,
+    title: servicesData.articles[0].title,
+    subTitle: servicesData.articles[0].subTitle,
+    single: false,
+    imgOne: blueprints,
+    imgOneAlt: servicesData.articles[0].imgOneAlt,
+    imgTwo: personWorking,
+    imgTwoAlt: servicesData.articles[0].imgTwoAlt,
+  },
+  {
+    isRightSection: false,
+    title: servicesData.articles[1].title,
+    subTitle: servicesData.articles[1].subTitle,
+    img: beforeAfter,
+    imgAlt: servicesData.articles[1].imgAlt,
+    btnExists: true,
+    btnTitle: servicesData.articles[1].btnTitle,
+    btnURL: "#",
+  },
+  {
+    isRightSection: true,
+    title: servicesData.articles[2].title,
+    subTitle: servicesData.articles[2].subTitle,
+    single: false,
+    imgOne: constructionWorkers,
+    imgOneAlt: servicesData.articles[2].imgOneAlt,
+    imgTwo: aerialView,
+    imgTwoAlt: servicesData.articles[2].imgTwoAlt,
+  },
+  {
+    isRightSection: false,
+    title: servicesData.articles[3].title,
+    subTitle: servicesData.articles[3].subTitle,
+    img: usingTools,
+    imgAlt: servicesData.articles[3].imgAlt,
+  },
+  {
+    isRightSection: true,
+    title: servicesData.articles[4].title,
+    subTitle: servicesData.articles[4].subTitle,
+    single: false,
+    imgOne: progressBuilding,
+    imgOneAlt: servicesData.articles[4].imgOneAlt,
+    imgTwo: underConstruction,
+    imgTwoAlt: servicesData.articles[4].imgTwoAlt,
+    btnExists: true,
+    btnTitle: servicesData.articles[4].btnTitle,
+    btnURL: "#",
+  },
+];
+
+const pageTitle: string = `${servicesData.pageTitle} | ${SITE.title}`;
+const metaDescription = servicesData.metaDescription;
+const ogTitle = servicesData.ogTitle;
+---
+
+<MainLayout
+  title={pageTitle}
+  lang="zh-cn"
+  customDescription={metaDescription}
+  customOgTitle={ogTitle}
+  structuredData={{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://screwfast.uk/zh-cn/services",
+    url: "https://screwfast.uk/zh-cn/services",
+    name: servicesData.ogTitle,
+    description: servicesData.metaDescription,
+    isPartOf: {
+      "@type": "WebSite",
+      url: "https://screwfast.uk",
+      name: "ScrewFast",
+      description:
+        "ScrewFast offers top-tier hardware tools and expert construction services to meet all your project needs.",
+    },
+    inLanguage: "zh-cn",
+  }}
+>
+  {/* MainSection is the introductory section of the page, it also contains a CTA button */}
+  <MainSection
+    title={servicesData.mainSection.title}
+    subTitle={servicesData.mainSection.subTitle}
+    btnExists={true}
+    btnTitle={servicesData.mainSection.btnTitle}
+    btnURL="#"
+  />
+  {/* RightSection and LeftSection contain details about various services along with pertinent imagery.
+  They alternate for variety in design.
+  The 'btnExists' property is used to toggle the display of a button in these sections.
+  When btnExists={true}, a button is displayed.
+  This can be used to link to more detailed information or related resources.
+  RightSection can also conditionally render one or two images based on the 'single' property.
+  If 'single' is true, it displays one image, otherwise it displays two.
+  */}
+  {
+    articles.map((article) => {
+      return article.isRightSection ? (
+        <RightSection
+          title={article.title}
+          subTitle={article.subTitle}
+          single={article.single}
+          imgOne={article.imgOne}
+          imgOneAlt={article.imgOneAlt}
+          imgTwo={article.imgTwo}
+          imgTwoAlt={article.imgTwoAlt}
+          btnExists={article.btnExists}
+          btnTitle={article.btnTitle}
+          btnURL={article.btnURL}
+        />
+      ) : (
+        <LeftSection
+          title={article.title}
+          subTitle={article.subTitle}
+          img={article.img}
+          imgAlt={article.imgAlt}
+          btnExists={article.btnExists}
+          btnTitle={article.btnTitle}
+          btnURL={article.btnURL}
+        />
+      );
+    })
+  }
+  {/* FeaturesStats section showcases essential stats valuable to users */}
+  <FeaturesStats
+    title={servicesData.featuresStats.title}
+    subTitle={servicesData.featuresStats.subTitle}
+    mainStatTitle={servicesData.featuresStats.mainStatTitle}
+    mainStatSubTitle={servicesData.featuresStats.mainStatSubTitle}
+    stats={servicesData.featuresStats.stats}
+  />
+</MainLayout>

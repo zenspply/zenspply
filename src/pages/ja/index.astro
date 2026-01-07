@@ -1,0 +1,149 @@
+---
+// Import the necessary components
+import MainLayout from "@/layouts/MainLayout.astro";
+import HeroSection from "@components/sections/landing/HeroSection.astro";
+import HeroSectionAlt from "@components/sections/landing/HeroSectionAlt.astro";
+import ClientsSection from "@components/sections/landing/ClientsSection.astro";
+import FeaturesGeneral from "@components/sections/features/FeaturesGeneral.astro";
+import FeaturesNavs from "@components/sections/features/FeaturesNavs.astro";
+import TestimonialsSection from "@components/sections/testimonials/TestimonialsSection.astro";
+import PricingSection from "@components/sections/pricing/PricingSection.astro";
+import FAQ from "@components/sections/misc/FAQ.astro";
+import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro";
+import heroImage from "@images/hero-image.avif";
+import faqs from "@data/ja/faqs.json";
+import features from "@data/ja/features.json";
+import pricing from "@data/ja/pricing.json";
+import featureImage from "@images/features-image.avif";
+import construction from "@images/construction-image.avif";
+import tools from "@images/automated-tools.avif";
+import dashboard from "@images/dashboard-image.avif";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { partnersData } from "@/data_files/constants";
+
+const avatarSrcs: Array<string> = [
+  "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&&auto=format&fit=facearea&facepad=3&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+];
+
+---
+
+<MainLayout lang="ja">
+  <AnnouncementBanner
+    btnId="dismiss-button"
+    btnTitle="GitHubでScrewFastを探索"
+    url="https://github.com/mearashadowfax/ScrewFast"
+  />
+
+  <HeroSection
+    title=`<span
+        class="text-yellow-500 dark:text-yellow-400">ScrewFast</span>でプロジェクトを装備しよう`
+    subTitle="あらゆるプロジェクトニーズに対応する高品質なハードウェアツールと専門の建設サービス。"
+    primaryBtn="探索を始める"
+    primaryBtnURL={getRelativeLocaleUrl("ja", "products")}
+    secondaryBtn="営業チームに連絡"
+    secondaryBtnURL={getRelativeLocaleUrl("ja", "contact")}
+    withReview={true}
+    avatars={avatarSrcs}
+    rating=`<span class="font-bold">4.8</span> / 5`
+    starCount={4}
+    reviews=`<span class="font-bold">12,800</span>件以上のレビューから`
+    src={heroImage}
+    alt="様々なハードウェアツールが入ったScrewFast製品ボックスの山"
+  />
+
+  <ClientsSection
+    title="業界リーダーに信頼されています"
+    subTitle="業界の巨人たちが選んだ信頼性を体験してください。"
+    partners={partnersData}
+  />
+
+  <FeaturesGeneral
+    title="業界の要求に応える"
+    subTitle="ScrewFastでは、ハードウェアおよび建設分野で直面する独特の課題に取り組んでいます。最先端のツールから専門サービスまで、お客様が障壁を克服し、目標を達成できるようサポートすることに専念しています。"
+    src={featureImage}
+    alt="浮遊するボックスのScrewFast製品"
+    features={features}
+  />
+
+  <FeaturesNavs
+    title=`<span class="text-yellow-500 dark:text-yellow-400">ScrewFast</span>の提供サービスをあなたのハードウェアおよび建設ニーズに完全に適合させてください。`
+    tabs={[
+      {
+        heading: "最先端ツール",
+        content:
+          "ScrewFastの最先端ツールでプロジェクトを強化しましょう。高度な自動化ソリューションで建設管理の効率向上を体験してください。",
+        svg: "tools",
+        src: tools,
+        alt: "茶色の草原に置かれた黄色と黒の重機",
+        first: true,
+      },
+      {
+        heading: "直感的ダッシュボード",
+        content:
+          "ScrewFastの直感的ダッシュボードで簡単にナビゲートしましょう。迅速かつ効果的なワークフロー管理のために設計されたユーザーフレンドリーなインターフェースで、プロジェクトをシームレスにセットアップおよび監督できます。",
+        svg: "dashboard",
+        src: dashboard,
+        alt: "直感的ダッシュボードのスクリーンショットまたはグラフィック表現",
+        second: true,
+      },
+      {
+        heading: "堅牢な機能",
+        content:
+          "複雑さを最小限にし、生産性を最大化します。ScrewFastの堅牢な機能は、建設プロセスを合理化し、優秀さで際立つ結果を提供するように設計されています。",
+        svg: "house",
+        src: construction,
+        alt: "昼間のタワークレーン近くの灰色の金属建物フレーム",
+      },
+    ]}
+  />
+
+  <TestimonialsSection
+    title="プロジェクトを加速"
+    subTitle="ScrewFastでは、アカウントの即座セットアップで迅速なスタートを保証します。再定義された建設スピードを体験してください。"
+    ;
+    testimonials={[
+      {
+        content:
+          "ScrewFastは私たちのプロジェクト効率を劇的に向上させました。セットアップは即座で、彼らの迅速な応答時間は異常です。ハードウェアおよび建設サポートの真のゲームチェンジャーです！",
+        author: "Samantha Ruiz",
+        role: "最高運営責任者 | ConstructIt Inc.",
+        avatarSrc:
+          "https://images.unsplash.com/photo-1593104547489-5cfb3839a3b5?q=80&w=1453&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
+      },
+    ]}
+    statistics={[
+      {
+        count: "70k+",
+        description:
+          "装備された顧客 — DIYから大手建設企業まで",
+      },
+      {
+        count: "35%",
+        description:
+          "ScrewFastツールとサービスによるプロジェクト効率の向上",
+      },
+      {
+        count: "15.3%",
+        description:
+          "長期顧客が報告したメンテナンスコストの削減",
+      },
+      {
+        count: "2x",
+        description: "革新的な締結ソリューションを使用したより迅速な組み立て",
+      },
+    ]}
+  />
+
+  <PricingSection pricing={pricing} />
+
+  <FAQ title="よくある<br />質問" faqs={faqs} />
+
+  <HeroSectionAlt
+    title="一緒に構築しましょう"
+    subTitle="ScrewFastは、Astro、Tailwind CSS、Preline UIフレームワークで細心に作られたオープンソーステンプレートです。"
+    url="https://github.com/mearashadowfax/ScrewFast"
+  />
+</MainLayout>

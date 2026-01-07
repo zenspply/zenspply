@@ -1,0 +1,149 @@
+---
+// Import the necessary components
+import MainLayout from "@/layouts/MainLayout.astro";
+import HeroSection from "@components/sections/landing/HeroSection.astro";
+import HeroSectionAlt from "@components/sections/landing/HeroSectionAlt.astro";
+import ClientsSection from "@components/sections/landing/ClientsSection.astro";
+import FeaturesGeneral from "@components/sections/features/FeaturesGeneral.astro";
+import FeaturesNavs from "@components/sections/features/FeaturesNavs.astro";
+import TestimonialsSection from "@components/sections/testimonials/TestimonialsSection.astro";
+import PricingSection from "@components/sections/pricing/PricingSection.astro";
+import FAQ from "@components/sections/misc/FAQ.astro";
+import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro";
+import heroImage from "@images/hero-image.avif";
+import faqs from "@data/fa/faqs.json";
+import features from "@data/fa/features.json";
+import pricing from "@data/fa/pricing.json";
+import featureImage from "@images/features-image.avif";
+import construction from "@images/construction-image.avif";
+import tools from "@images/automated-tools.avif";
+import dashboard from "@images/dashboard-image.avif";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { partnersData } from "@/data_files/constants";
+
+const avatarSrcs: Array<string> = [
+  "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&&auto=format&fit=facearea&facepad=3&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+];
+
+---
+
+<MainLayout lang="fa">
+  <AnnouncementBanner
+    btnId="dismiss-button"
+    btnTitle="ScrewFast را در GitHub کاوش کنید"
+    url="https://github.com/mearashadowfax/ScrewFast"
+  />
+
+  <HeroSection
+    title=`پروژه‌های خود را با <span
+        class="text-yellow-500 dark:text-yellow-400">ScrewFast</span> تجهیز کنید`
+    subTitle="ابزارهای سخت‌افزاری با کیفیت بالا و خدمات ساخت و ساز متخصص برای هر نیاز پروژه."
+    primaryBtn="شروع کاوش"
+    primaryBtnURL={getRelativeLocaleUrl("fa", "products")}
+    secondaryBtn="تماس با تیم فروش"
+    secondaryBtnURL={getRelativeLocaleUrl("fa", "contact")}
+    withReview={true}
+    avatars={avatarSrcs}
+    rating=`<span class="font-bold">4.8</span> / 5`
+    starCount={4}
+    reviews=`از بیش از <span class="font-bold">12.8 هزار</span> نظر`
+    src={heroImage}
+    alt="پشته‌ای از جعبه‌های محصولات ScrewFast حاوی ابزارهای سخت‌افزاری متنوع"
+  />
+
+  <ClientsSection
+    title="مورد اعتماد رهبران صنعت"
+    subTitle="قابلیت اعتمادی که توسط غول‌های صنعت انتخاب شده را تجربه کنید."
+    partners={partnersData}
+  />
+
+  <FeaturesGeneral
+    title="برآورده ساختن نیازهای صنعت"
+    subTitle="در ScrewFast، ما با چالش‌های منحصر به فردی که در بخش‌های سخت‌افزار و ساخت و ساز با آن روبرو می‌شوید مقابله می‌کنیم. از ابزارهای پیشرفته تا خدمات متخصص، ما متعهد به کمک به شما برای غلبه بر موانع و دستیابی به اهدافتان هستیم."
+    src={featureImage}
+    alt="محصولات ScrewFast در جعبه‌های شناور"
+    features={features}
+  />
+
+  <FeaturesNavs
+    title=`پیشنهادهای <span class="text-yellow-500 dark:text-yellow-400">ScrewFast</span> را به طور کامل با نیازهای سخت‌افزار و ساخت و ساز خود مطابقت دهید.`
+    tabs={[
+      {
+        heading: "ابزارهای پیشرفته",
+        content:
+          "پروژه‌های خود را با ابزارهای پیشرفته ScrewFast توانمند کنید. بازدهی بهبود یافته در مدیریت ساخت و ساز را با راه‌حل‌های خودکار پیشرفته ما تجربه کنید.",
+        svg: "tools",
+        src: tools,
+        alt: "تجهیزات سنگین زرد و سیاه در زمین علفی قهوه‌ای",
+        first: true,
+      },
+      {
+        heading: "دشبوردهای بصری",
+        content:
+          "با استفاده از دشبوردهای بصری ScrewFast به آسانی حرکت کنید. پروژه‌های خود را به طور یکپارچه راه‌اندازی کرده و نظارت کنید، با رابط‌های کاربرپسند که برای مدیریت گردش کار سریع و مؤثر طراحی شده‌اند.",
+        svg: "dashboard",
+        src: dashboard,
+        alt: "یک عکس صفحه یا نمایش گرافیکی از دشبورد بصری",
+        second: true,
+      },
+      {
+        heading: "ویژگی‌های قدرتمند",
+        content:
+          "پیچیدگی را کمینه کرده، بهره‌وری را بیشینه کنید. ویژگی‌های قدرتمند ScrewFast برای بهینه‌سازی فرآیند ساخت و ساز شما طراحی شده‌اند و نتایجی ارائه می‌دهند که به خاطر تعالی‌شان متمایز هستند.",
+        svg: "house",
+        src: construction,
+        alt: "قاب ساختمان فلزی خاکستری نزدیک جرثقیل برجی در طول روز",
+      },
+    ]}
+  />
+
+  <TestimonialsSection
+    title="پروژه‌های خود را تسریع کنید"
+    subTitle="در ScrewFast، ما شروع سریع را با راع‌اندازی فوری حساب کاربری تضمین می‌کنیم. سرعت ساخت و ساز بازتعریف شده را تجربه کنید."
+    ;
+    testimonials={[
+      {
+        content:
+          "ScrewFast به طرز چشمگیری بازدهی پروژه ما را افزایش داد. راه‌اندازی فوری بود و زمان پاسخ سریع آنها فوق‌العاده است. واقعاً یک تغییر بنیادی در پشتیبانی سخت‌افزار و ساخت و ساز!",
+        author: "Samantha Ruiz",
+        role: "مدیر عامل عملیات | ConstructIt Inc.",
+        avatarSrc:
+          "https://images.unsplash.com/photo-1593104547489-5cfb3839a3b5?q=80&w=1453&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
+      },
+    ]}
+    statistics={[
+      {
+        count: "70k+",
+        description:
+          "مشتریان تجهیز شده — از خودکاری تا شرکت‌های بزرگ ساختمانی",
+      },
+      {
+        count: "35%",
+        description:
+          "افزایش بازدهی پروژه با ابزارها و خدمات ScrewFast",
+      },
+      {
+        count: "15.3%",
+        description:
+          "کاهش هزینه‌های نگهداری گزارش شده توسط مشتریان بلندمدت",
+      },
+      {
+        count: "2x",
+        description: "مونتاژ سریع‌تر با استفاده از راه‌حل‌های بست نوآورانه",
+      },
+    ]}
+  />
+
+  <PricingSection pricing={pricing} />
+
+  <FAQ title="سوالات<br />متداول" faqs={faqs} />
+
+  <HeroSectionAlt
+    title="بیایید با هم بسازیم"
+    subTitle="ScrewFast یک قالب متن باز است که بـ1 دقت با فریم‌ورک‌های Astro، Tailwind CSS و Preline UI طراحی شده است."
+    url="https://github.com/mearashadowfax/ScrewFast"
+  />
+</MainLayout>

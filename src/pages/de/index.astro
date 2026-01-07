@@ -1,0 +1,149 @@
+---
+// Import the necessary components
+import MainLayout from "@/layouts/MainLayout.astro";
+import HeroSection from "@components/sections/landing/HeroSection.astro";
+import HeroSectionAlt from "@components/sections/landing/HeroSectionAlt.astro";
+import ClientsSection from "@components/sections/landing/ClientsSection.astro";
+import FeaturesGeneral from "@components/sections/features/FeaturesGeneral.astro";
+import FeaturesNavs from "@components/sections/features/FeaturesNavs.astro";
+import TestimonialsSection from "@components/sections/testimonials/TestimonialsSection.astro";
+import PricingSection from "@components/sections/pricing/PricingSection.astro";
+import FAQ from "@components/sections/misc/FAQ.astro";
+import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro";
+import heroImage from "@images/hero-image.avif";
+import faqs from "@data/de/faqs.json";
+import features from "@data/de/features.json";
+import pricing from "@data/de/pricing.json";
+import featureImage from "@images/features-image.avif";
+import construction from "@images/construction-image.avif";
+import tools from "@images/automated-tools.avif";
+import dashboard from "@images/dashboard-image.avif";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { partnersData } from "@/data_files/constants";
+
+const avatarSrcs: Array<string> = [
+  "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&&auto=format&fit=facearea&facepad=3&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+];
+
+---
+
+<MainLayout lang="de">
+  <AnnouncementBanner
+    btnId="dismiss-button"
+    btnTitle="Entdecken Sie ScrewFast auf GitHub"
+    url="https://github.com/mearashadowfax/ScrewFast"
+  />
+
+  <HeroSection
+    title=`Rüsten Sie Ihre Projekte mit <span
+        class="text-yellow-500 dark:text-yellow-400">ScrewFast</span> aus`
+    subTitle="Hochwertige Hardware-Werkzeuge und fachkundige Bauleistungen für jeden Projektbedarf."
+    primaryBtn="Entdecken beginnen"
+    primaryBtnURL={getRelativeLocaleUrl("de", "products")}
+    secondaryBtn="Vertriebsteam kontaktieren"
+    secondaryBtnURL={getRelativeLocaleUrl("de", "contact")}
+    withReview={true}
+    avatars={avatarSrcs}
+    rating=`<span class="font-bold">4.8</span> / 5`
+    starCount={4}
+    reviews=`Von über <span class="font-bold">12.800</span> Bewertungen`
+    src={heroImage}
+    alt="Stapel von ScrewFast-Produktboxen mit verschiedenen Hardware-Werkzeugen"
+  />
+
+  <ClientsSection
+    title="Vertraut von Branchenführern"
+    subTitle="Erleben Sie die Zuverlässigkeit, die von Branchenriesen gewählt wird."
+    partners={partnersData}
+  />
+
+  <FeaturesGeneral
+    title="Branchenanforderungen erfüllen"
+    subTitle="Bei ScrewFast gehen wir die einzigartigen Herausforderungen im Hardware- und Bausektor an. Von modernsten Werkzeugen bis hin zu Expertendienstleistungen sind wir darauf spezialisiert, Ihnen dabei zu helfen, Hindernisse zu überwinden und Ihre Ziele zu erreichen."
+    src={featureImage}
+    alt="ScrewFast-Produkte in schwebenden Boxen"
+    features={features}
+  />
+
+  <FeaturesNavs
+    title=`Passen Sie <span class="text-yellow-500 dark:text-yellow-400">ScrewFast</span>s Angebote perfekt an Ihre Hardware- und Baubedürfnisse an.`
+    tabs={[
+      {
+        heading: "Modernste Werkzeuge",
+        content:
+          "Stärken Sie Ihre Projekte mit ScrewFasts modernsten Werkzeugen. Erleben Sie verbesserte Effizienz im Baumanagement mit unseren ausgeklügelten automatisierten Lösungen.",
+        svg: "tools",
+        src: tools,
+        alt: "Gelbes und schwarzes Schwermaschinengerät auf braunem Grasfeld",
+        first: true,
+      },
+      {
+        heading: "Intuitive Dashboards",
+        content:
+          "Navigieren Sie mühelos mit ScrewFasts intuitiven Dashboards. Richten Sie Ihre Projekte nahtlos ein und überwachen Sie sie mit benutzerfreundlichen Oberflächen, die für schnelles und effektives Workflow-Management entwickelt wurden.",
+        svg: "dashboard",
+        src: dashboard,
+        alt: "Ein Screenshot oder eine grafische Darstellung des intuitiven Dashboards",
+        second: true,
+      },
+      {
+        heading: "Robuste Funktionen",
+        content:
+          "Minimieren Sie Komplexität, maximieren Sie Produktivität. ScrewFasts robuste Funktionen sind darauf ausgelegt, Ihren Bauprozess zu optimieren und Ergebnisse zu liefern, die sich durch ihre Exzellenz auszeichnen.",
+        svg: "house",
+        src: construction,
+        alt: "Graues Metallbaugerüst in der Nähe eines Turmdrehkrans tagsüber",
+      },
+    ]}
+  />
+
+  <TestimonialsSection
+    title="Beschleunigen Sie Ihre Projekte"
+    subTitle="Bei ScrewFast sorgen wir für einen schnellen Start mit sofortiger Kontoeinrichtung. Erleben Sie die neu definierte Geschwindigkeit des Bauens."
+    ;
+    testimonials={[
+      {
+        content:
+          "ScrewFast hat unsere Projekteffizienz dramatisch gesteigert. Die Einrichtung war sofort, und ihre schnellen Reaktionszeiten sind phänomenal. Wirklich ein Wendepunkt in der Hardware- und Bauunterstützung!",
+        author: "Samantha Ruiz",
+        role: "Geschäftsführerin | ConstructIt Inc.",
+        avatarSrc:
+          "https://images.unsplash.com/photo-1593104547489-5cfb3839a3b5?q=80&w=1453&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
+      },
+    ]}
+    statistics={[
+      {
+        count: "70k+",
+        description:
+          "ausgerüstete Kunden — von Heimwerkern bis zu großen Baufirmen",
+      },
+      {
+        count: "35%",
+        description:
+          "Steigerung der Projekteffizienz mit ScrewFast-Werkzeugen und -Dienstleistungen",
+      },
+      {
+        count: "15.3%",
+        description:
+          "Reduzierung der Wartungskosten, berichtet von Langzeitkunden",
+      },
+      {
+        count: "2x",
+        description: "schnellere Montage mit innovativen Befestigungslösungen",
+      },
+    ]}
+  />
+
+  <PricingSection pricing={pricing} />
+
+  <FAQ title="Häufig<br />gestellte Fragen" faqs={faqs} />
+
+  <HeroSectionAlt
+    title="Lassen Sie uns zusammen bauen"
+    subTitle="ScrewFast ist eine Open-Source-Vorlage, sorgfältig erstellt mit Astro-, Tailwind CSS- und Preline UI-Frameworks."
+    url="https://github.com/mearashadowfax/ScrewFast"
+  />
+</MainLayout>
